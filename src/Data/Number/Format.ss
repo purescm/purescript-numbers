@@ -6,27 +6,28 @@
           toExponentialNative
           toString)
   (import (only (rnrs base) define lambda string-append number->string)
-          (only (chezscheme) format))
+          (only (chezscheme) format)
+          (only (purs runtime bytestring) string->bytestring))
 
   ;; TODO add a proper implementation
   (define toPrecisionNative
     (lambda (d)
       (lambda (num)
-        (format "~d" num))))
+        (string->bytestring (format "~d" num)))))
 
   (define toFixedNative
     (lambda (d)
       (lambda (num)
-        (format (string-append "~," (number->string d) "F") num))))
+        (string->bytestring (format (string-append "~," (number->string d) "F") num)))))
 
   ;; TODO add a proper implementation
   (define toExponentialNative
     (lambda (d)
       (lambda (num)
-        (format "~d" num))))
+        (string->bytestring (format "~d" num)))))
 
   (define toString
     (lambda (num)
-      (format "~d" num)))
+      (string->bytestring (format "~d" num))))
 
 )
